@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: account-service
+  namespace: demo-apps
+  labels:
+    app: account-service
+    app.kubernetes.io/name: account-service
+spec:
+  selector:
+    app: account-service
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+    protocol: TCP
+  - name: management
+    port: 8081
+    targetPort: 8081
+    protocol: TCP
+  type: ClusterIP
