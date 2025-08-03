@@ -1,0 +1,97 @@
+HELP.md
+pom.xml.bak
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### STS ###
+.attach_pid*
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### SDK Man ###
+.sdkmanrc
+
+### CSS ###
+_site/
+*.css
+
+### Large Binary Files ###
+# Installer packages and archives
+*.pkg
+*.tar.xz
+*.tar.gz
+*.zip
+*.dmg
+*.iso
+
+# CRC/OpenShift installer artifacts
+archive/crc-attempt/*.pkg
+archive/crc-attempt/*.tar.xz
+
+### CF Build Artifacts ###
+*.zip
+!petclinic.css
+**pull-secret.txt
+
+### Node / JavaScript ###
+node_modules/
+package-lock.json
+
+### Python ###
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.pytest_cache/
+.cache/
+
+### .NET Core ###
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+*.deps.json
+*.runtimeconfig.json
