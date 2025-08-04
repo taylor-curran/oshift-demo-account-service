@@ -6,6 +6,10 @@ metadata:
   labels:
     app: account-service
     app.kubernetes.io/name: account-service
+    app.kubernetes.io/version: "1.2.0"
+    app.kubernetes.io/part-of: retail-banking
+    environment: prod
+    managed-by: openshift
 spec:
   selector:
     app: account-service

@@ -5,6 +5,11 @@ metadata:
   namespace: demo-apps
   labels:
     app: account-service
+    app.kubernetes.io/name: account-service
+    app.kubernetes.io/version: "1.2.0"
+    app.kubernetes.io/part-of: retail-banking
+    environment: prod
+    managed-by: openshift
 data:
   SPRING_PROFILES_ACTIVE: "production"
   SERVER_PORT: "8080"
