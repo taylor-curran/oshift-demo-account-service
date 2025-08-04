@@ -95,3 +95,11 @@ obj/
 *.pdb
 *.deps.json
 *.runtimeconfig.json
+
+### OpenShift Testing Artifacts ###
+Dockerfile
+k8s/
+kind-config.yaml
+openshift-test-setup.sh
+test-openshift-deployment.sh
+cleanup-openshift-test.sh
