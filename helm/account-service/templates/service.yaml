@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "account-service.fullname" . }}
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    {{- include "account-service.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - name: http
+      port: 80
+      targetPort: {{ .Values.service.port }}
+      protocol: TCP
+    - name: management
+      port: {{ .Values.service.managementPort }}
+      targetPort: {{ .Values.service.managementPort }}
+      protocol: TCP
+  selector:
+    {{- include "account-service.selectorLabels" . | nindent 4 }}
+    environment: {{ .Values.app.environment }}
