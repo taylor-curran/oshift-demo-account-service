@@ -1,0 +1,118 @@
+replicaCount: 3
+
+image:
+  repository: registry.bank.internal/account-service
+  tag: "1.2.0"
+  pullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+podAnnotations:
+  prometheus.io/scrape: "true"
+  prometheus.io/port: "8081"
+  prometheus.io/path: "/actuator/prometheus"
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 1001
+  seccompProfile:
+    type: RuntimeDefault
+
+securityContext:
+  readOnlyRootFilesystem: true
+  capabilities:
+    drop: ["ALL"]
+
+service:
+  type: ClusterIP
+  port: 8080
+  managementPort: 8081
+
+ingress:
+  enabled: false
+  className: ""
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  hosts:
+    - host: account-service.localhost
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+resources:
+  requests:
+    memory: "512Mi"
+    cpu: "250m"
+  limits:
+    memory: "1Gi"
+    cpu: "500m"
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+app:
+  name: account-service
+  version: "1.2.0"
+  partOf: retail-banking
+  environment: dev
+  managedBy: helm
+
+env:
+  springProfilesActive: "production"
+  serverPort: "8080"
+  managementServerPort: "8081"
+  dbPoolSize: "20"
+  dbConnectionTimeout: "30000"
+  dbIdleTimeout: "600000"
+  eurekaClientEnabled: "true"
+  eurekaInstanceHostname: "account-service"
+  newrelicEnabled: "true"
+  datadogTraceEnabled: "true"
+
+probes:
+  liveness:
+    httpGet:
+      path: /actuator/health
+      port: 8081
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    timeoutSeconds: 10
+    failureThreshold: 3
+  readiness:
+    httpGet:
+      path: /actuator/health/readiness
+      port: 8081
+    initialDelaySeconds: 5
+    periodSeconds: 5
+    timeoutSeconds: 3
+    failureThreshold: 3
+
+volumes:
+  tmpStorage:
+    emptyDir: {}
+  appLogs:
+    emptyDir: {}
+
+namespace:
+  create: true
+  name: demo-apps
+
+secrets:
+  enabled: true
+  name: account-service-secrets
