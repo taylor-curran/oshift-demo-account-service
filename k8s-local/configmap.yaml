@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: account-service-config
+  labels:
+    app: account-service
+data:
+  SPRING_PROFILES_ACTIVE: "production"
+  SERVER_PORT: "8080"
+  MANAGEMENT_SERVER_PORT: "8081"
+  DB_POOL_SIZE: "20"
+  DB_CONNECTION_TIMEOUT: "30000"
+  DB_IDLE_TIMEOUT: "600000"
+  EUREKA_CLIENT_ENABLED: "false"
+  EUREKA_INSTANCE_HOSTNAME: "account-service"
+  NEWRELIC_ENABLED: "false"
+  DATADOG_TRACE_ENABLED: "false"
